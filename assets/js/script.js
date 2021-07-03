@@ -47,3 +47,36 @@ var startBtn = document.createElement("button");
 startBtn.textContent = "START QUIZ";
 startBtn.setAttribute('style', 'border-radius: 10px; background: #0062ff; padding: 0.5%; color: #fff;');
 q1.appendChild(startBtn);
+
+var headerContainer = document.getElementById('header-content');
+headerContainer.setAttribute('style', 'display: flex; justify-content: space-between;');
+
+var highscoreEl = document.getElementById('highscores');
+highscoreEl.setAttribute('style', 'margin-right: 40; margin-left: 1%;')
+
+var timerEl = document.getElementById('timer');
+timerEl.textContent = 'Time: 75';
+timerEl.setAttribute('style', 'margin-left: 40%; margin-right: 1%;');
+// timerEl.appendChild(timerEl.textContent);
+
+function countdown() {
+    var timeLeft = 75;
+
+    var timeInterval = setInterval(function() {
+        if (timeLeft >= 1) {
+            timerEl.textContent = 'Time: ' + timeLeft;
+            timeLeft--;
+        } 
+            // else if (timeLeft === 1) {
+            //     timerEl.textContent = 'Time: ' + timeLeft;
+            //     timeLeft--;
+            // } 
+        else {
+            timerEl.textContent = 'Time: ' + timeLeft;
+            // timerEl.textContent = 'Time: 0';
+            clearInterval(timeInterval);
+        }
+    }, 1000);
+}
+
+startBtn.onclick = countdown;
