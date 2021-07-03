@@ -29,27 +29,27 @@
 
 var body = document.body;
 
-var q1 = document.createElement("div");
-q1.setAttribute('style', 'display: flex; flex-direction: column; flex-wrap: wrap; align-items: center; margin-top: 10%;');
-body.appendChild(q1);
+// var q1 = document.createElement("div");
+// q1.setAttribute('style', 'display: flex; flex-direction: column; flex-wrap: wrap; align-items: center; margin-top: 10%;');
+// body.appendChild(q1);
 
-var h1El = document.createElement("h1");
-h1El.textContent = 'Coding Quiz Challenge';
-h1El.setAttribute('style', 'margin: 0;' )
-q1.appendChild(h1El);
+// var h1El = document.createElement("h1");
+// h1El.textContent = 'Coding Quiz Challenge';
+// h1El.setAttribute('style', 'margin: 0;' )
+// q1.appendChild(h1El);
 
-var quizP = document.createElement("p");
-quizP.textContent = 'Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!';
-quizP.setAttribute('style', 'text-align: center; margin: 1%; padding-left: 32.25%; padding-right: 32.25%;');
-q1.appendChild(quizP);
+// var quizP = document.createElement("p");
+// quizP.textContent = 'Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!';
+// quizP.setAttribute('style', 'text-align: center; margin: 1%; padding-left: 32.25%; padding-right: 32.25%;');
+// q1.appendChild(quizP);
 
-var startBtn = document.createElement("button");
-startBtn.textContent = "START QUIZ";
-startBtn.setAttribute('style', 'border-radius: 10px; background: #0062ff; padding: 0.5%; color: #fff;');
-q1.appendChild(startBtn);
+// var startBtn = document.createElement("button");
+// startBtn.textContent = "START QUIZ";
+// startBtn.setAttribute('style', 'border-radius: 10px; background: #0062ff; padding: 0.5%; color: #fff;');
+// q1.appendChild(startBtn);
 
 var headerContainer = document.getElementById('header-content');
-headerContainer.setAttribute('style', 'display: flex; justify-content: space-between;');
+headerContainer.setAttribute('style', 'display: flex; flex-wrap: wrap; justify-content: space-between;');
 
 var highscoreEl = document.getElementById('highscores');
 highscoreEl.setAttribute('style', 'margin-right: 40; margin-left: 1%;')
@@ -78,5 +78,69 @@ function countdown() {
         }
     }, 1000);
 }
+// when countdown initiated, timer starts, questions displayed === function initiates **** need function for Qs
+// when answer clicked, this is set to new object in array; iterate?
+var questionEl = document.createElement('div');
+var askQuestion = document.createElement('h2');
+var listEl = document.createElement('ol');
+var li1 = document.createElement('li');
+var li2 = document.createElement('li');
+var li3 = document.createElement('li');
+var li4 = document.createElement('li');
 
-startBtn.onclick = countdown;
+questionEl.setAttribute('style', 'display: flex; flex-wrap: wrap; flex-direction: column; align-items: flex-start; margin-top: 10%;');
+askQuestion.setAttribute('style', 'padding: 0 33%; font-size: 2.5vw;');
+listEl.setAttribute('style', 'margin-left: 33%; margin-top: 2%; text-align: left;');
+li1.setAttribute('style', 'margin: 2% 0; padding: 3% 0 3% 10%; width: 125%; border-radius: 5px; background: #0062ff; color: #fff;');
+li2.setAttribute('style', 'margin: 2% 0; padding: 3% 0 3% 10%; width: 125%; border-radius: 5px; background: #0062ff; color: #fff;');
+li3.setAttribute('style', 'margin: 2% 0; padding: 3% 0 3% 10%; width: 125%;  border-radius: 5px; background: #0062ff; color: #fff;');
+li4.setAttribute('style', 'margin: 2% 0; padding: 3% 0 3% 10%; width: 125%; border-radius: 5px; background: #0062ff; color: #fff;');
+
+body.appendChild(questionEl);
+questionEl.appendChild(askQuestion);
+questionEl.appendChild(listEl);
+listEl.appendChild(li1);
+listEl.appendChild(li2);
+listEl.appendChild(li3);
+listEl.appendChild(li4);
+
+var questions = [
+    {
+        q: askQuestion.textContent = 'Commonly used data types DO NOT include:',
+        a: li1.textContent = '1. strings',
+        a: li2.textContent = '2. booleans',
+        a: li3.textContent = '3. alerts',
+        a: li4.textContent = '4. numbers',
+    },
+    {
+        q: askQuestion.textContent = 'The condition in and if/else statement is enclosed with _________.',
+        a: li1.textContent = '1. quotes',
+        a: li2.textContent = '2. curly brackets',
+        a: li3.textContent = '3. parenthesis',
+        a: li4.textContent = '4. square brackets',
+    },
+    {
+        q: askQuestion.textContent = 'Arrays in JavaScript can be used to store_________.',
+        a: li1.textContent = '1. numbers and strings',
+        a: li2.textContent = '2. other arrays',
+        a: li3.textContent = '3. booleans',
+        a: li4.textContent = '4. all of the above',
+    },
+    {
+        q: askQuestion.textContent = 'String values must be enclosed within _____ when being assigned to variables.',
+        a: li1.textContent = '1. commas',
+        a: li2.textContent = '2. curly brackets',
+        a: li3.textContent = '3. quotes',
+        a: li4.textContent = '4. parenthesis',
+    },
+    {
+        q: askQuestion.textContent = 'A very useful tool used during development and debugging for printing content to the debugger is:',
+        a: li1.textContent = '1. JavaScript',
+        a: li2.textContent = '2. terminal/bash',
+        a: li3.textContent = '3. for loops',
+        a: li4.textContent = '4. console.log',
+    },
+];
+
+
+// startBtn.onclick = countdown;
