@@ -41,10 +41,6 @@ quizP.textContent = 'Try to answer the following code-related questions within t
 startBtn.textContent = "START QUIZ",
 
 
-// h1El.textContent = '';
-// quizP.textContent = '';
-// startBtn.textContent = '';
-
 q1.setAttribute('style', 'display: flex; flex-direction: column; flex-wrap: wrap; align-items: center; margin-top: 10%;');
 h1El.setAttribute('style', 'margin: 0;' )
 quizP.setAttribute('style', 'text-align: center; margin: 1%; padding-left: 32.25%; padding-right: 32.25%;');
@@ -74,6 +70,9 @@ var li2 = document.createElement('li');
 var li3 = document.createElement('li');
 var li4 = document.createElement('li');
 
+var messageC = document.createElement('h3');
+var messageI = document.createElement('h3');
+
 var endQuizEl = document.createElement('div');
 var endH2 = document.createElement('h2');
 var endP = document.createElement('p');
@@ -98,47 +97,9 @@ initialsForm.setAttribute('style', 'margin: 1% 0; width: 40%;');
 initialsInput.setAttribute('style', 'margin: 0 1%;');
 initialsBtn.setAttribute('style', 'padding: 1%; width: 15%; border: none; border-radius: 5px; background: #0062ff; color: #fff;');
 
-// function questionDisplay() {
-    
-// }
-
-// function displayFirst () {
-//     questionEl = '';
-//      //= '';
-// }
-
-// startBtn.addEventListener('click', function() {
-    
-//     countdown();
-
-// });
-
-// li1.textContent = '';
-// li2.textContent = '';
-// li3.textContent = '';
-// li4.textContent = '';
-
-
-
-// li1.addEventListener('click', displayMessage);
-// li2.addEventListener('click', displayMessage);
-// li3.addEventListener('click', displayMessage);
-// li4.addEventListener('click', displayMessage);
-
-
-
-    // askQuestion.textContent = questionObjects[i].q;
-    // li1.textContent = questionObjects[i].a1;
-    // li2.textContent = questionObjects[i].a2;
-    // li3.textContent = questionObjects[i].a3;
-    // li4.textContent = questionObjects[i].a4;
-
-// add question number variable starting at 0
-    // every time question answered add 1 to question number
-// new function to clear current question
-    // function to add next question
 
 var question = 0;
+var message = setInterval(answerQuestion, 1000);
 // questionObjects[question].q
 // addEventLister to the list item answers to make this clickable for functions
 li1.addEventListener('click', function() {
@@ -171,6 +132,8 @@ li4.addEventListener('click', function() {
 });
 
 
+
+
 function answerQuestion() {
     if (question >= questionObjects.length) {
         endQuiz();
@@ -179,6 +142,7 @@ function answerQuestion() {
         nextQuestion();
     }
 }
+
 var questionObjects = [
     {
         q: 'Commonly used data types DO NOT include:',
@@ -222,10 +186,168 @@ var questionObjects = [
     },
     // if (li1 
     // console.log(clicked)
-    ];
+];
 
     
-    // var nextQuestion = function() {
+// var messageC = 'Correct!';
+// var massageI = 'Incorrect!';
+function displayMessage() {
+    messageC.textContent = 'Correct!';
+    messageI.textContent = 'Incorrect!';
+    
+    if (questionObjects[question].a1 === questionObjects[question].correctAnswer || questionObjects[question].a2 === questionObjects[question].correctAnswer || questionObjects[question].a3 === questionObjects[question].correctAnswer || questionObjects[question].a4 === questionObjects[question].correctAnswer) {
+        body.appendChild(messageC);
+    } else {
+        body.appendChild(messageI);
+    }
+}
+
+
+var quizFinishedObj = [
+    endH2.textContent = 'All done!',
+    endP.textContent = 'Your final score is ' + '_' + '.',
+    initialsLabel.textContent = 'Enter Initials:',
+    initialsBtn.textContent = "Submit",
+];
+
+function removeQuestions() {
+    body.removeChild(questionEl);
+}
+
+function nextQuestion() {
+    askQuestion.textContent = questionObjects[question].q
+    li1.textContent = questionObjects[question].a1
+    li2.textContent = questionObjects[question].a2
+    li3.textContent = questionObjects[question].a3
+    li4.textContent = questionObjects[question].a4
+    // li1.textContent = 
+}
+
+function displayQuestion() {
+    body.appendChild(questionEl);
+    questionEl.appendChild(askQuestion);
+    questionEl.appendChild(listEl);
+    listEl.appendChild(li1);
+    listEl.appendChild(li2);
+    listEl.appendChild(li3);
+    listEl.appendChild(li4);
+}
+
+function endQuiz() {
+    // body.removeChild(questionEl);
+    // body.removeChild(q1);
+    body.appendChild(endQuizEl);
+    endQuizEl.appendChild(endH2);
+    endQuizEl.appendChild(endP);
+    endQuizEl.appendChild(initialsForm);
+    initialsForm.appendChild(initialsLabel);
+    initialsForm.appendChild(initialsInput);
+    initialsForm.appendChild(initialsBtn);
+}
+
+
+function countdown() {
+    var timeLeft = 5;
+
+    var timeInterval = setInterval(function() {
+        if (timeLeft >= 1) {
+            timerEl.textContent = 'Time: ' + timeLeft;
+            timeLeft--;
+        } else {
+            timerEl.textContent = 'Time: ' + timeLeft;
+            clearInterval(timeInterval);
+            // input call function to clear questions
+            removeQuestions();
+            endQuiz();
+        }
+    }, 1000);
+
+    if (timeLeft >= 0) {
+        body.removeChild(q1);
+        // body.removeChild(endQuizEl);
+        displayQuestion();
+        nextQuestion();
+    }
+
+    // if (timeLeft === 0) {
+    //     removeQuestions();
+    //     endQuiz();
+    // }
+}
+
+startBtn.onclick = countdown;
+
+
+// when countdown initiated, timer starts, questions displayed === function initiates **** need function for Qs
+// when answer clicked, this is set to new object in array; iterate?
+
+// var element = document.getElementById('');
+
+// displayFirst();
+
+
+
+// when the page starts display first page
+    // when the button is clicked === replace field with fist question
+        // when answer clicked === replace field with next question
+
+
+// h1El.textContent = '';
+// quizP.textContent = '';
+// startBtn.textContent = '';
+
+// function questionDisplay() {
+    
+// }
+
+// function displayFirst () {
+//     questionEl = '';
+//      //= '';
+// }
+
+// startBtn.addEventListener('click', function() {
+    
+//     countdown();
+
+// });
+
+// li1.textContent = '';
+// li2.textContent = '';
+// li3.textContent = '';
+// li4.textContent = '';
+
+
+
+// li1.addEventListener('click', displayMessage);
+// li2.addEventListener('click', displayMessage);
+// li3.addEventListener('click', displayMessage);
+// li4.addEventListener('click', displayMessage);
+
+
+
+    // askQuestion.textContent = questionObjects[i].q;
+    // li1.textContent = questionObjects[i].a1;
+    // li2.textContent = questionObjects[i].a2;
+    // li3.textContent = questionObjects[i].a3;
+    // li4.textContent = questionObjects[i].a4;
+
+// add question number variable starting at 0
+    // every time question answered add 1 to question number
+// new function to clear current question
+    // function to add next question
+
+// var myVar = setInterval(setColor, 300);
+
+// function setColor() {
+//   var x = document.body;
+//   x.style.backgroundColor = x.style.backgroundColor == "yellow" ? "pink" : "yellow";
+// }
+
+// function stopColor() {
+//   clearInterval(myVar);
+// }
+
+// var nextQuestion = function() {
     //     questionObjects++;
     // }
     // function setQuestionText() {
@@ -257,26 +379,10 @@ var questionObjects = [
     //     // }
             
     // }
-    var messageC = 'Correct!';
-    var massageI = 'Incorrect!';
-    function displayMessage() {
-        if (questionObjects[question].a === questionObjects[question].correctAnswer) {
-            messageC;
-        } else {
-            messageI;
-        }
-    }
 
 // // questionObjects[a].addEventListener('click', function() {
 // //     if () {};
 // // });
-
-var quizFinishedObj = [
-    endH2.textContent = 'All done!',
-    endP.textContent = 'Your final score is ' + '_' + '.',
-    initialsLabel.textContent = 'Enter Initials:',
-    initialsBtn.textContent = "Submit",
-];
 
 // askQuestion.textContent = '';
 // li1.textContent = '';
@@ -294,88 +400,9 @@ var quizFinishedObj = [
 // li3.addEventListener('click', );
 // li4.addEventListener('click', );
 
-function nextQuestion() {
-    askQuestion.textContent = questionObjects[question].q
-    li1.textContent = questionObjects[question].a1
-    li2.textContent = questionObjects[question].a2
-    li3.textContent = questionObjects[question].a3
-    li4.textContent = questionObjects[question].a4
-    // li1.textContent = 
-}
-
-function displayQuestion() {
-    body.appendChild(questionEl);
-    questionEl.appendChild(askQuestion);
-    questionEl.appendChild(listEl);
-    listEl.appendChild(li1);
-    listEl.appendChild(li2);
-    listEl.appendChild(li3);
-    listEl.appendChild(li4);
-}
-
-function endQuiz() {
-    body.removeChild(questionEl);
-    body.removeChild(q1);
-    body.appendChild(endQuizEl);
-    endQuizEl.appendChild(endH2);
-    endQuizEl.appendChild(endP);
-    endQuizEl.appendChild(initialsForm);
-    initialsForm.appendChild(initialsLabel);
-    initialsForm.appendChild(initialsInput);
-    initialsForm.appendChild(initialsBtn);
-}
-
 // // do i need prevent default?
 // // startBtn.addEventListener('click', function() {
 // //     if (countdown === true) {
         
 // //     }
 // // });
-
-
-
-
-function countdown() {
-    var timeLeft = 20;
-
-    var timeInterval = setInterval(function() {
-        if (timeLeft >= 1) {
-            timerEl.textContent = 'Time: ' + timeLeft;
-            timeLeft--;
-        } else {
-            timerEl.textContent = 'Time: ' + timeLeft;
-            clearInterval(timeInterval);
-            // input call function to clear questions
-            
-            endQuiz();
-        }
-    }, 1000);
-
-    if (timeLeft >= 0) {
-        body.removeChild(q1);
-        // body.removeChild(endQuizEl);
-        displayQuestion();
-        nextQuestion();
-    }
-
-    // if (timeLeft === 0) {
-    //     endQuiz();
-    // }
-}
-
-
-
-
-// when countdown initiated, timer starts, questions displayed === function initiates **** need function for Qs
-// when answer clicked, this is set to new object in array; iterate?
-
-// var element = document.getElementById('');
-
-// displayFirst();
-
-startBtn.onclick = countdown;
-
-// when the page starts display first page
-    // when the button is clicked === replace field with fist question
-        // when answer clicked === replace field with next question
-
