@@ -27,5 +27,8 @@ highScoreContainer.appendChild(buttonsEl);
 buttonsEl.appendChild(backBtn);
 buttonsEl.appendChild(clearBtn);
 
+backBtn.addEventListener('click', function() {
+    window.location= "./index.html";
+});
 
 // get local storage initials and score append to li
