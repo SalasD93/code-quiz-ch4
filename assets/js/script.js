@@ -70,8 +70,8 @@ var li2 = document.createElement('li');
 var li3 = document.createElement('li');
 var li4 = document.createElement('li');
 
-var messageC = document.createElement('h3');
-var messageI = document.createElement('h3');
+var message = document.createElement('div');
+// var messageI = document.createElement('div');
 
 var endQuizEl = document.createElement('div');
 var endH2 = document.createElement('h2');
@@ -86,9 +86,13 @@ questionEl.setAttribute('style', 'display: flex; flex-wrap: wrap; flex-direction
 askQuestion.setAttribute('style', 'padding: 0 33%; font-size: 2.5vw;');
 listEl.setAttribute('style', 'margin-left: 33%; margin-top: 2%; text-align: left;');
 li1.setAttribute('style', 'margin: 2% 0; padding: 3% 0 3% 10%; width: 125%; border-radius: 5px; background: #0062ff; color: #fff;');
+li1.setAttribute('id', 'user-answer');
 li2.setAttribute('style', 'margin: 2% 0; padding: 3% 0 3% 10%; width: 125%; border-radius: 5px; background: #0062ff; color: #fff;');
+li2.setAttribute('id', 'user-answer');
 li3.setAttribute('style', 'margin: 2% 0; padding: 3% 0 3% 10%; width: 125%;  border-radius: 5px; background: #0062ff; color: #fff;');
+li3.setAttribute('id', 'user-answer');
 li4.setAttribute('style', 'margin: 2% 0; padding: 3% 0 3% 10%; width: 125%; border-radius: 5px; background: #0062ff; color: #fff;');
+li4.setAttribute('id', 'user-answer');
 
 endQuizEl.setAttribute('style', 'display: flex; flex-wrap: wrap; flex-direction: column; align-items: flex-start;  margin-top: 10%; margin-left: 35%; font-family:Arial, Helvetica, sans-serif;');
 endH2.setAttribute('style', 'margin: 1% 0; font-size: 2.5vw;');
@@ -97,52 +101,75 @@ initialsForm.setAttribute('style', 'margin: 1% 0; width: 40%;');
 initialsInput.setAttribute('style', 'margin: 0 1%;');
 initialsBtn.setAttribute('style', 'padding: 1%; width: 15%; border: none; border-radius: 5px; background: #0062ff; color: #fff;');
 
+//******************************************************************************************************************* */
 
+//******************************************************************************************* */
+
+function removeQuestions() {
+    body.removeChild(questionEl);
+} 
 var question = 0;
-var message = setInterval(answerQuestion, 1000);
+// var message = setInterval(answerQuestion, 1000);
 // questionObjects[question].q
 // addEventLister to the list item answers to make this clickable for functions
-li1.addEventListener('click', function() {
+var answer1 = li1.addEventListener('click', function() {
     // call answer fuction-correct vs incorrect
     question++;
+    // call function to display new question
+    // displayMessage();
+    answerQuestion();
+    console.log('Hello');
+});
+var answer2 = li2.addEventListener('click', function() {
+    // call answer fuction-correct vs incorrect
+    question++;
+    // displayMessage();
     // call function to display new question
     answerQuestion();
     console.log('Hello');
 });
-li2.addEventListener('click', function() {
+var answer3 = li3.addEventListener('click', function() {
     // call answer fuction-correct vs incorrect
     question++;
+    // displayMessage();
     // call function to display new question
     answerQuestion();
     console.log('Hello');
 });
-li3.addEventListener('click', function() {
+var answer4 = li4.addEventListener('click', function() {
     // call answer fuction-correct vs incorrect
     question++;
+    // displayMessage();
     // call function to display new question
     answerQuestion();
     console.log('Hello');
 });
-li4.addEventListener('click', function() {
-    // call answer fuction-correct vs incorrect
-    question++;
-    // call function to display new question
-    answerQuestion();
-    console.log('Hello');
-});
-
-
 
 
 function answerQuestion() {
     if (question >= questionObjects.length) {
+        removeQuestions();
         endQuiz();
-    } else {
+    // } else if(question === questionObjects.length) {
+    //     // displayMessage();
+    //     endQuiz();
+    }  else {
         // displayMessage();
         nextQuestion();
     }
 }
 
+
+// function displayMessage() {
+    
+//     if (answer1 === questionObjects[question].correctAnswer && questionObjects[question].a1 === questionObjects[question].correctAnswer); {
+//         message.textContent = "Correct!";
+//         body.appendChild(message);        
+//     } else {
+//       message.textContent = "Inorrect!";
+//       body.appendChild(message);  
+//     }
+// }
 var questionObjects = [
     {
         q: 'Commonly used data types DO NOT include:',
@@ -150,6 +177,7 @@ var questionObjects = [
         a2: '2. booleans',
         a3: '3. alerts',
         a4: '4. numbers',
+        // changed
         correctAnswer: '3. alerts',
     },
     {
@@ -191,27 +219,47 @@ var questionObjects = [
     
 // var messageC = 'Correct!';
 // var massageI = 'Incorrect!';
-function displayMessage() {
-    messageC.textContent = 'Correct!';
-    messageI.textContent = 'Incorrect!';
-    
-    if (questionObjects[question].a1 === questionObjects[question].correctAnswer || questionObjects[question].a2 === questionObjects[question].correctAnswer || questionObjects[question].a3 === questionObjects[question].correctAnswer || questionObjects[question].a4 === questionObjects[question].correctAnswer) {
-        body.appendChild(messageC);
-    } else {
-        body.appendChild(messageI);
-    }
-}
+// function displayMessage() {
+//     // var messageInterval = setInterval( function() { 
+//         // let userAnswer = questionObjects[question].a1 || questionObjects[question].a2 || questionObjects[question].a3 || questionObjects[question].a4;
+//         let userAnswer = answer1;
+//         let answer = questionObjects[question].correctAnswer;
+//         if (userAnswer == answer) {
+//             message.textContent = "Correct!";
+//             body.appendChild(message);  
+//             // clearInterval(messageInterval);
+//         // if (questionObjects[question].a1 === questionObjects[question].correctAnswer 
+//         //     || questionObjects[question].a2 === questionObjects[question].correctAnswer || questionObjects[question].a3 === questionObjects[question].correctAnswer || questionObjects[question].a4 === questionObjects[question].correctAnswer
+//         //     ) {
+//         //     messageC.textContent = "Correct!";
+//         //     body.appendChild(messageC);        
+//         // } else if (answer2 === true && questionObjects[question].a2 === questionObjects[question].correctAnswer) {
+//         //     messageC.textContent = 'Correct!';
+//         //     body.appendChild(messageC); 
+//         // } else if (answer3 === true && questionObjects[question].a3 === questionObjects[question].correctAnswer) {
+//         //     messageC.textContent = 'Correct!';
+//         //     body.appendChild(messageC); 
+//         // } else if (answer4 === true && questionObjects[question].a4 === questionObjects[question].correctAnswer) {
+//         //     messageC.textContent = 'Correct!';
+//         //     body.appendChild(messageC); 
+//         } else {
+//             message.textContent = "Incorrect!";
+//             body.appendChild(message);
+//             // clearInterval(messageInterval);        
+//         }
+//     // }, 20);
+// }
+
+endH2.textContent = 'All done!';
+// endP.textContent = '';
+initialsLabel.textContent = 'Enter Initials:';
+initialsBtn.textContent = "Submit";
 
 
-var quizFinishedObj = [
-    endH2.textContent = 'All done!',
-    endP.textContent = 'Your final score is ' + '_' + '.',
-    initialsLabel.textContent = 'Enter Initials:',
-    initialsBtn.textContent = "Submit",
-];
 
-function removeQuestions() {
-    body.removeChild(questionEl);
+
+function removeStart() {
+    body.removeChild(q1);
 }
 
 function nextQuestion() {
@@ -220,7 +268,6 @@ function nextQuestion() {
     li2.textContent = questionObjects[question].a2
     li3.textContent = questionObjects[question].a3
     li4.textContent = questionObjects[question].a4
-    // li1.textContent = 
 }
 
 function displayQuestion() {
@@ -247,32 +294,31 @@ function endQuiz() {
 
 
 function countdown() {
-    var timeLeft = 5;
-
+    var timeLeft = 10;
+    var highScore = endP.textContent = 'Your final score is ' + timerEl.textContent + '.';
     var timeInterval = setInterval(function() {
-        if (timeLeft >= 1) {
+        if (timeLeft >= 1 && question < questionObjects.length) {
             timerEl.textContent = 'Time: ' + timeLeft;
             timeLeft--;
+            endP.textContent = 'Your final score is ' + timeLeft + '.';
         } else {
             timerEl.textContent = 'Time: ' + timeLeft;
             clearInterval(timeInterval);
             // input call function to clear questions
-            removeQuestions();
+            // removeQuestions();
+            endP.textContent = 'Your final score is ' + timeLeft + '.';
             endQuiz();
+            
         }
     }, 1000);
 
     if (timeLeft >= 0) {
-        body.removeChild(q1);
-        // body.removeChild(endQuizEl);
+        removeStart()        
         displayQuestion();
         nextQuestion();
+        // body.removeChild(q1);
+        // body.removeChild(endQuizEl);
     }
-
-    // if (timeLeft === 0) {
-    //     removeQuestions();
-    //     endQuiz();
-    // }
 }
 
 startBtn.onclick = countdown;
@@ -406,3 +452,8 @@ startBtn.onclick = countdown;
         
 // //     }
 // // });
+
+// if (timeLeft === 0) {
+    //     removeQuestions();
+    //     endQuiz();
+    // }
