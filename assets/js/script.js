@@ -76,6 +76,8 @@ var message = document.createElement('div');
 var endQuizEl = document.createElement('div');
 var endH2 = document.createElement('h2');
 var endP = document.createElement('p');
+endP.setAttribute('id', "high-score");
+console.log(endP);
 var initialsForm = document.createElement('form');
 var initialsLabel = document.createElement('label');
 var initialsInput = document.createElement('input');
@@ -87,6 +89,7 @@ askQuestion.setAttribute('style', 'padding: 0 33%; font-size: 2.5vw;');
 listEl.setAttribute('style', 'margin-left: 33%; margin-top: 2%; text-align: left;');
 li1.setAttribute('style', 'margin: 2% 0; padding: 3% 0 3% 10%; width: 125%; border-radius: 5px; background: #0062ff; color: #fff;');
 li1.setAttribute('id', 'user-answer');
+console.log(li1);
 li2.setAttribute('style', 'margin: 2% 0; padding: 3% 0 3% 10%; width: 125%; border-radius: 5px; background: #0062ff; color: #fff;');
 li2.setAttribute('id', 'user-answer');
 li3.setAttribute('style', 'margin: 2% 0; padding: 3% 0 3% 10%; width: 125%;  border-radius: 5px; background: #0062ff; color: #fff;');
@@ -99,6 +102,7 @@ endH2.setAttribute('style', 'margin: 1% 0; font-size: 2.5vw;');
 endP.setAttribute('style', 'margin: 1% 0;');
 initialsForm.setAttribute('style', 'margin: 1% 0; width: 40%;');
 initialsInput.setAttribute('style', 'margin: 0 1%;');
+initialsInput.setAttribute('id', "initials-input");
 initialsBtn.setAttribute('style', 'padding: 1%; width: 15%; border: none; border-radius: 5px; background: #0062ff; color: #fff;');
 
 //******************************************************************************************************************* */
@@ -295,21 +299,25 @@ function endQuiz() {
 
 function countdown() {
     var timeLeft = 10;
-    var highScore = endP.textContent = 'Your final score is ' + timerEl.textContent + '.';
+    // var highScore = endP.textContent;
     var timeInterval = setInterval(function() {
         if (timeLeft >= 1 && question < questionObjects.length) {
             timerEl.textContent = 'Time: ' + timeLeft;
             timeLeft--;
             endP.textContent = 'Your final score is ' + timeLeft + '.';
+            localStorage.setItem("highscore", timeLeft);
+            localStorage.getItem("highscore");
         } else {
             timerEl.textContent = 'Time: ' + timeLeft;
             clearInterval(timeInterval);
             // input call function to clear questions
             // removeQuestions();
             endP.textContent = 'Your final score is ' + timeLeft + '.';
+            localStorage.setItem("highscore", timeLeft);
+            localStorage.getItem("highscore");
             endQuiz();
-            
         }
+        
     }, 1000);
 
     if (timeLeft >= 0) {
@@ -319,10 +327,60 @@ function countdown() {
         // body.removeChild(q1);
         // body.removeChild(endQuizEl);
     }
+    
 }
+
+// function openHighScores() {
+//     var url = "./highscores.html";
+//     var win = window.open(url, '_parent');
+//         win.focus();
+// }
+
+
+initialsBtn.addEventListener('click', function(event) {
+    event.preventDefault();
+
+    var initials = document.getElementById("initials-input").value;
+    localStorage.setItem("initials", initials);
+    localStorage.getItem("initials");
+
+    window.location.replace("./highscores.html");
+    return false; 
+    // openHighScores();
+    // var initialPage = "./index.html";
+    // location.replace("./highscores.html/#" + "_parent");
+    // window.location.href("./highscores.html");
+    // , "_parent";
+});
+
+
+// function storeScore() {
+//     localStorage.setItem("highScore", timeLeft);
+//     console.log(storeScore());
+// }
+// function recallScore() {
+//     var highScore = localStorage.getItem("highscore");
+
+
+//     console.log(highScore);
+// }
+
+// function logHighScore 
 
 startBtn.onclick = countdown;
 
+// need to figure out how to compare my clicked answers with my answers
+// need to figure out how to display correct or incorrect message
+// need to figure out how to 
+// need to figure out how to remove null from highscores when page reloads
+
+// need to figure out how to have initials button open highscores.html DONE
+
+// need to render localStorage setItem highscore and initials DONE
+// need to recall localStorage getItems hs and init DONE
+// need to add a function to clear localStorage to clear button DONE
+
+// *******************************************************************************************************************************************
 
 // when countdown initiated, timer starts, questions displayed === function initiates **** need function for Qs
 // when answer clicked, this is set to new object in array; iterate?
