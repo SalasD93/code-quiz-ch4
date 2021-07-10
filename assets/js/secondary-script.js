@@ -16,7 +16,7 @@ backBtn.setAttribute('style', 'width: 20%; padding: 1% 0; border: none; border-r
 clearBtn.setAttribute('style', 'width: 40%; padding: ; margin-left: 2%; border: none; border-radius: 5px; background: #0062ff; color: #fff;');
 
 hsH1.textContent = 'High Scores';
-hsItem.textContent = '';
+hsItem.textContent = [];
 backBtn.textContent = "Go back";
 clearBtn.textContent = "Clear high scores";
 
@@ -28,17 +28,28 @@ highScoreContainer.appendChild(buttonsEl);
 buttonsEl.appendChild(backBtn);
 buttonsEl.appendChild(clearBtn);
 
-var highScore = localStorage.getItem("highscore");
-// document.getElementById("high-score").innerHTML = highScore;
-var initials = localStorage.getItem("initials");
-document.getElementById("high-score").innerHTML = initials + " - " + highScore;
-// document.getElementById("high-score").innerHTML
+var getHighScore = function () {
+    var highScore = localStorage.getItem("highscore");
+    // document.getElementById("high-score").innerHTML = highScore;
+    var initials = localStorage.getItem("initials");
+    document.getElementById("high-score").textContent = initials + " - " + highScore;
+    // if(document.getElementById("high-score").innerHTML === null) {
+    //     ddocument.getElementById("high-score").innerHTML = '';
+    // }
+    // document.getElementById("high-score").innerHTML
+}
 
 backBtn.addEventListener('click', function() {
     window.location= "./index.html";
 });
 
 clearBtn.addEventListener('click', function() {
-    document.getElementById("high-score").innerHTML = '';
+    // document.getElementById("high-score").innerHTML = '';
+    localStorage.clear();
+    // if (hsItem.textContent === null) {
+    //     hsItem.textContent = '';
+    // }
 });
 // get local storage initials and score append to li
+
+getHighScore;
