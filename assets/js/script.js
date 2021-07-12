@@ -12,7 +12,8 @@ startBtn.textContent = "START QUIZ";
 q1.setAttribute('style', 'display: flex; flex-direction: column; flex-wrap: wrap; align-items: center; margin-top: 10%;');
 h1El.setAttribute('style', 'margin: 0;' )
 quizP.setAttribute('style', 'text-align: center; margin: 1%; padding-left: 32.25%; padding-right: 32.25%;');
-startBtn.setAttribute('style', 'border: none;border-radius: 10px; background: #0062ff; padding: 0.5%; color: #fff;');
+quizP.setAttribute('id', "intro");
+startBtn.setAttribute('style', 'border: none; border-radius: 10px; background: #0062ff; padding: 0.5%; color: #fff;');
 // adds quiz intro to page
 body.appendChild(q1);
 q1.appendChild(h1El);
@@ -22,7 +23,7 @@ q1.appendChild(startBtn);
 var headerContainer = document.getElementById('header-content');
 headerContainer.setAttribute('style', 'display: flex; flex-wrap: wrap; justify-content: space-between;');
 var highscoreEl = document.getElementById('highscores');
-highscoreEl.setAttribute('style', 'margin-right: 40%; margin-left: 1%;');
+highscoreEl.setAttribute('style', 'margin-left: 1%;');
 var timerEl = document.getElementById('timer');
 timerEl.textContent = 'Time: 75';
 timerEl.setAttribute('style', 'margin-left: 40%; margin-right: 1%;');
@@ -68,7 +69,7 @@ endP.setAttribute('style', 'margin: 1% 0;');
 initialsForm.setAttribute('style', 'margin: 1% 0; width: 40%;');
 initialsInput.setAttribute('style', 'margin: 0 1%;');
 initialsInput.setAttribute('id', "initials-input");
-initialsBtn.setAttribute('style', 'padding: 1%; width: 15%; border: none; border-radius: 5px; background: #0062ff; color: #fff;');
+initialsBtn.setAttribute('style', 'padding: 1%; width: 50px; border: none; border-radius: 5px; background: #0062ff; color: #fff;');
 
 // removes questions from main page when all questions answered
 function removeQuestions() {

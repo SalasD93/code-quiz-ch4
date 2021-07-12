@@ -12,8 +12,8 @@ highScoreContainer.setAttribute('style', 'display: flex; flex-wrap: wrap; flex-d
 hsList.setAttribute('style', 'background: #e8f0fc; padding: 1% 50% 1% 3%; margin-top: 2%;');
 hsItem.setAttribute('id', "high-score");
 buttonsEl.setAttribute('style', 'display: flex; flex-wrap: wrap; justify-content: flex-start; width: 40%; margin: 2% 0;');
-backBtn.setAttribute('style', 'width: 20%; padding: 1% 0; border: none; border-radius: 5px; background: #0062ff; color: #fff;');
-clearBtn.setAttribute('style', 'width: 40%; padding: ; margin-left: 2%; border: none; border-radius: 5px; background: #0062ff; color: #fff;');
+backBtn.setAttribute('style', 'width: 150px; padding: 1% 0; margin-left: 2%; margin-bottom: 2%; border: none; border-radius: 5px; background: #0062ff; color: #fff;');
+clearBtn.setAttribute('style', 'width: 150px; padding: 1% 0; margin-left: 2%; border: none; border-radius: 5px; background: #0062ff; color: #fff;');
 // set text content of each element
 hsH1.textContent = 'High Scores';
 hsItem.textContent = '';
@@ -32,10 +32,6 @@ var highScore = localStorage.getItem("highscore");
 // document.getElementById("high-score").innerHTML = highScore;
 var initials = localStorage.getItem("initials");
 document.getElementById("high-score").textContent = initials + " - " + highScore;
-// if(document.getElementById("high-score").innerHTML === null) {
-//     ddocument.getElementById("high-score").innerHTML = '';
-// }
-// document.getElementById("high-score").innerHTML
 // allows back button to redirect to quiz
 backBtn.addEventListener('click', function() {
     window.location = "./index.html";
@@ -44,8 +40,4 @@ backBtn.addEventListener('click', function() {
 clearBtn.addEventListener('click', function() {
     document.getElementById("high-score").innerHTML = '';
     localStorage.clear();
-    // if (hsItem.textContent === null) {
-    //     hsItem.textContent = '';
-    // }
 });
-// get local storage initials and score append to li
