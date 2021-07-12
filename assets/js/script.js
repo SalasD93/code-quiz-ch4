@@ -216,7 +216,7 @@ function endQuiz() {
 
 
 function countdown() {
-    var timeLeft = 20;
+    var timeLeft = 75;
     // var penalty = 5;
     // var highScore = endP.textContent;
     var timeInterval = setInterval(function() {
