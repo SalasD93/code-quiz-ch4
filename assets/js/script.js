@@ -248,8 +248,9 @@ function countdown() {
     }
     
     if (timeLeft === 0) {
-        endQuiz();
         removeQuestions();
+        endQuiz();
+        
     }
 
     // makes li clickable for answering
