@@ -174,16 +174,16 @@ function countdown() {
             timerEl.textContent = 'Time: ' + timeLeft;
             timeLeft--;
             endP.textContent = 'Your final score is ' + timeLeft + '.';
-            localStorage.setItem("highscore", timeLeft);
-            localStorage.getItem("highscore");
+            JSON.stringify(localStorage.setItem("highscore", timeLeft));
+            // localStorage.getItem("highscore");
         } else {
             timerEl.textContent = 'Time: ' + timeLeft;
             clearInterval(timeInterval);
             // input call function to clear questions
             // removeQuestions();
             endP.textContent = 'Your final score is ' + timeLeft + '.';
-            localStorage.setItem("highscore", timeLeft);
-            localStorage.getItem("highscore");
+            JSON.stringify(localStorage.setItem("highscore", timeLeft));
+            // localStorage.getItem("highscore");
             removeQuestions();
             endQuiz();
         } 
@@ -232,9 +232,10 @@ function countdown() {
 initialsBtn.addEventListener('click', function(event) {
     event.preventDefault();
     // retrieves the value to be stored
-    var initials = document.getElementById("initials-input").value;
+    var initials = JSON.stringify(document.getElementById("initials-input").value);
+    // console.log(initials);
     localStorage.setItem("initials", initials);
-    localStorage.getItem("initials");
+    // localStorage.getItem("initials");
     // allows button to go to high score html
     window.location.replace("./highscores.html");
     return false; 

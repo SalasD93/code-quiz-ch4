@@ -28,9 +28,11 @@ highScoreContainer.appendChild(buttonsEl);
 buttonsEl.appendChild(backBtn);
 buttonsEl.appendChild(clearBtn);
 // retrieves information from local storage for high scores
-var highScore = localStorage.getItem("highscore");
+var highScore = JSON.parse(localStorage.getItem("highscore"));
+console.log(highScore);
 // document.getElementById("high-score").innerHTML = highScore;
-var initials = localStorage.getItem("initials");
+var initials = JSON.parse(localStorage.getItem("initials"));
+console.log(initials);
 document.getElementById("high-score").textContent = initials + " - " + highScore;
 // allows back button to redirect to quiz
 backBtn.addEventListener('click', function() {
